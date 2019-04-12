@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <script>
+
+        /*
+        //Exercise : 1
+        //Declare vehicleName window object and assign a value
+        var vehicleName = 'Toyota';
+
+        //Declare printVehicleNameOuter function
+        function printVehicleNameOuter(){
+            console.log(this.vehicleName);
+        }
+
+        //Print window object
+        console.log(this);
+
+        //Call printVehicleNameOuter method
+        printVehicleNameOuter();
+
+        //Declare Vehicle object containing variable: vehicleName and function: printVehicleNameInner
+        var vehicle = {
+            vehicleName:'Nissan',
+            printVehicleNameInner:printVehicleNameOuter
+        };
+
+        //Call printVehicleNameInner
+        vehicle.printVehicleNameInner();
+
+
+        //Change function printVehicleNameInner to return anonymous function
+        var vehicle = {
+            vehicleName:'Nissan',
+            printVehicleNameInner:function(){
+                return function(){
+                    console.log(this.vehicleName);
+                }
+            }
+        };
+
+        //Execute modified printVehicleNameInner function
+        var execute = vehicle.printVehicleNameInner();
+        execute();
+
+        //Execute modified printVehicleNameInner function using call
+        execute.call(vehicle);
+
+        ////Execute modified printVehicleNameInner function using bind
+        var execute = vehicle.printVehicleNameInner().bind(vehicle);
+        execute();
+
+*/
+
+        /*
+
+        //Exercise : 3
+        function fetchUsers() {
+            fetch('https://api.github.com/users').then(function(response){
+                return response.json();
+            }).then(function(json){
+                console.log(jason);
+            });
+
+        }
+        fetchUsers();
+
+        function fetchUsers() {
+            return fetch('https://api.github.com/users').then(response=>response.json())
+
+        }
+        fetchUsers().then(function (jason) {
+            console.log(json);
+
+        });
+
+        */
+
+        //Exercise : 4
+
+        //Create a class named Vehicle using a function
+        //Add type variable and assign its value using constructor argument
+        //Increase number of vehicle count
+        function Vehicle(type) {
+            this.type = type;
+            Vehicle.VehicleCount++;
+
+        }
+
+        //Add the drive function to Vehicle class's prototype
+        Vehicle.prototype.drive = function(){
+            console.log('Vehicle is driving');
+        };
+
+        //Add VehicleCount as a static variable
+        Vehicle.VehicleCount = 0;
+
+        //Create object from Vehicle class
+        var vehicle = new Vehicle('Toyota');
+
+        //Crate a Car class which extend the class Vehicle
+        function Car(type) {
+            Vehicle.call(this,type);
+        }
+        Car.prototype = Object.create(Vehicle.prototype);
+        Car.prototype.constructor = Car;
+
+        //Add balanceWheels method to Car class
+        Car.prototype.balanceWheels = function(){
+            console.log('Wheels are balanced')
+        };
+
+        //Create new Car object
+        var car = new Car('Nissan');
+
+        //Call drive and balanceWheels method using car object
+        car.drive();
+        car.balanceWheels();
+
+        console.log(car.type,Vehicle.VehicleCount);
+
+
+    </script>
+
+
+</body>
+</html>
